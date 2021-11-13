@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Table from 'react-bootstrap/Table'
 import Row from './Row'
 
@@ -43,10 +43,7 @@ export default function InfoTable(props) {
                 </tr>
             </thead>
             <tbody>
-                {props.entries.length !== 0
-                    ? renderEntries()
-                    : <h1 className="text-center">Entries were not loaded yet.</h1>
-                }
+                {renderEntries()}
             </tbody>
         </Table>
     )
