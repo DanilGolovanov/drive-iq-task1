@@ -6,16 +6,6 @@ import { Button } from 'react-bootstrap'
 function App() {
 
 	const [entries, setEntries] = useState([]);
-	// separate state for headings to fetch them when page loads, so that 
-	// the empty table is displayed with headings that were fetched from 
-	// the API endpoint (better than just hard coding them)
-	const [headings, setHeadings] = useState([]);
-
-	// useEffect(() => {
-	// 	const response = axios.get('http://universities.hipolabs.com/search?country=Australia')
-	// 	setHeadings(response.data)
-	// 	console.log(headings)
-	// }, [headings])
 
 	async function fetchEntries() {
 		const response = await axios.get('http://universities.hipolabs.com/search?country=Australia')
@@ -24,11 +14,15 @@ function App() {
 
 	return (
 		<div className="App">
-			<Button onClick={fetchEntries}>LOAD</Button>
-			{entries.length !== 0
-				? <InfoTable entries={entries} />
-				: <h1>Entries were not loaded yet.</h1>
-			}
+			<div>
+				<h1 className="text-center">Software Development Assessment - Task 1</h1>
+				<div className="d-flex justify-content-center p-2">
+					<Button onClick={fetchEntries} className="mx-2">LOAD</Button>
+					<Button onClick={fetchEntries} className="mx-2" variant="success">ADD</Button>
+					<Button onClick={fetchEntries} className="mx-2" variant="danger">DELETE</Button>
+				</div>
+			</div>
+			<InfoTable entries={entries}/>
 		</div>
   	);
 }

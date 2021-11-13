@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Table from 'react-bootstrap/Table'
 import Row from './Row'
 
@@ -6,7 +6,6 @@ export default function InfoTable(props) {
 
     function renderHeader() {
         let headings = [];
-        console.log(props.entries)
 
         try {
             let keys = Object.keys(props.entries[0]);
@@ -37,14 +36,17 @@ export default function InfoTable(props) {
 	}
     
     return (
-        <Table striped bordered hover>
+        <Table striped bordered hover className='mt-3'>
             <thead>
                 <tr>
-                    { renderHeader() }
+                    {renderHeader()}
                 </tr>
             </thead>
             <tbody>
-                { renderEntries() }
+                {props.entries.length !== 0
+                    ? renderEntries()
+                    : <h1 className="text-center">Entries were not loaded yet.</h1>
+                }
             </tbody>
         </Table>
     )
