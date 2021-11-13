@@ -1,15 +1,19 @@
+import React, { useState } from 'react'
 import axios from 'axios'
+import InfoTable from './components/InfoTable'
 
 function App() {
+	const [entries, setEntries] = useState([])
 
-	async function fetchUnis() {
+	async function fetchEntries() {
 		const response = await axios.get('http://universities.hipolabs.com/search?country=Australia')
-		console.log(response.data)
+		setEntries(response.data)
 	}
 
 	return (
 		<div className="App">
-			<button onClick={fetchUnis}>LOAD</button>
+			<button onClick={fetchEntries}>LOAD</button>
+			<InfoTable entries={entries} />
 			<h1>Hello World</h1>
 		</div>
   	);
