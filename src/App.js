@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import InfoTable from './components/InfoTable'
+import { Button } from 'react-bootstrap'
 
 function App() {
 
@@ -19,13 +20,12 @@ function App() {
 	async function fetchEntries() {
 		const response = await axios.get('http://universities.hipolabs.com/search?country=Australia')
 		setEntries(response.data)
-		console.log(entries)
 	}
 
 	return (
 		<div className="App">
-			<button onClick={fetchEntries}>LOAD</button>
-			{entries.length != 0
+			<Button onClick={fetchEntries}>LOAD</Button>
+			{entries.length !== 0
 				? <InfoTable entries={entries} />
 				: <h1>Entries were not loaded yet.</h1>
 			}
